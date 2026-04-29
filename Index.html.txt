@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Van Wasbeek Wet & Recht | Gratis VSO Beoordeling</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap');
+        
+        :root {
+            --vw-blue: #0a1d37;
+            --vw-gold: #c5a059;
+            --vw-gold-light: #e2c999;
+            --vw-accent: #d4af37;
+        }
+
+        body { font-family: 'Montserrat', sans-serif; scroll-behavior: smooth; }
+        h1, h2, h3, h4, .font-serif { font-family: 'Playfair Display', serif; }
+        
+        .bg-vw-blue { background-color: var(--vw-blue); }
+        .text-vw-blue { color: var(--vw-blue); }
+        .bg-vw-gold { background-color: var(--vw-gold); }
+        .text-vw-gold { color: var(--vw-gold); }
+        .border-vw-gold { border-color: var(--vw-gold); }
+        
+        .gradient-gold { 
+            background: linear-gradient(135deg, #c5a059 0%, #d4af37 100%); 
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #c5a059 0%, #d4af37 100%);
+            color: white;
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            filter: brightness(1.1);
+            transform: translateY(-2px);
+        }
+
+        .step-card {
+            border-left: 4px solid var(--vw-gold);
+        }
+
+        .hidden { display: none; }
+        
+        .option-btn.selected {
+            background-color: var(--vw-gold) !important;
+            color: white !important;
+            border-color: var(--vw-gold) !important;
+        }
+
+        .ai-shimmer {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-900">
+
+    <!-- Header -->
+    <header class="bg-white border-b border-gray-100 sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <div class="relative w-12 h-12 bg-vw-blue flex items-center justify-center rounded-sm overflow-hidden shadow-inner">
+                    <div class="absolute inset-0 border-[1px] border-vw-gold opacity-30 m-[2px]"></div>
+                    <span class="text-vw-gold text-2xl font-serif relative z-10 select-none">W</span>
+                </div>
+                <div>
+                    <span class="text-xl font-bold tracking-widest text-vw-blue uppercase block leading-none">Van Wasbeek</span>
+                    <span class="text-[10px] tracking-[0.4em] font-medium text-vw-gold uppercase mt-1 block">Wet & Recht</span>
+                </div>
+            </div>
+            <nav class="hidden md:flex items-center space-x-8 font-semibold text-sm uppercase tracking-wider">
+                <a href="#voordelen" class="text-vw-blue hover:text-vw-gold transition">Voordelen</a>
+                <a href="#ai-analist" class="text-vw-blue hover:text-vw-gold transition italic">AI Analist ✨</a>
+                <a href="#calculator" class="text-vw-blue hover:text-vw-gold transition">Calculator</a>
+                <a href="#contact" class="btn-primary px-6 py-2 rounded-sm shadow-md text-[10px]">Gratis Check</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative py-16 md:py-24 bg-vw-blue overflow-hidden text-white">
+        <div class="absolute top-0 right-0 w-1/3 h-full bg-vw-gold opacity-5 transform skew-x-12 translate-x-20"></div>
+        
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="flex flex-col lg:flex-row items-center gap-12">
+                <div class="lg:w-1/2">
+                    <span class="inline-block py-1 px-3 border border-vw-gold text-vw-gold text-xs font-bold mb-6 uppercase tracking-[0.2em]">arbeidsrecht</span>
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+                        <span class="text-vw-gold italic">VSO</span> Ontvangen? Laat deze gratis controleren.
+                    </h1>
+                    <p class="text-lg text-gray-300 mb-8 max-w-lg leading-relaxed font-light">
+                        Voorkom dat u rechten op een WW-uitkering verliest of een te lage vergoeding accepteert. Wij beoordelen uw vaststellingsovereenkomst kosteloos.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="#quick-scan-card" class="btn-primary px-8 py-4 rounded-sm font-bold text-center tracking-widest uppercase text-sm">Start scan</a>
+                        <a href="tel:0612345678" class="border border-white/30 text-white px-8 py-4 rounded-sm font-bold text-center hover:bg-white/10 transition uppercase text-sm tracking-widest">Bel direct</a>
+                    </div>
+                </div>
+
+                <div class="lg:w-1/2 w-full">
+                    <div id="quick-scan-card" class="bg-white p-8 md:p-10 rounded-sm shadow-2xl text-vw-blue relative min-h-[500px] flex flex-col justify-center border border-gray-100">
+                        <h3 id="scan-title" class="text-2xl font-bold mb-8 border-b border-gray-100 pb-4 text-vw-blue">VSO Quick-Scan</h3>
+                        
+                        <div id="scan-step-1" class="space-y-8">
+                            <div>
+                                <p class="font-semibold text-sm uppercase tracking-wider mb-4 text-vw-blue text-xs">1. Heeft u al een vaststellingsovereenkomst ontvangen?</p>
+                                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                                    <button onclick="selectOption(this, 'vsoReceived')" class="option-btn py-3 px-2 border border-gray-200 rounded-sm hover:border-vw-gold hover:text-vw-gold transition text-xs font-bold uppercase text-gray-600">Ja</button>
+                                    <button onclick="selectOption(this, 'vsoReceived')" class="option-btn py-3 px-2 border border-gray-200 rounded-sm hover:border-vw-gold hover:text-vw-gold transition text-xs font-bold uppercase text-gray-600">Nee</button>
+                                    <button onclick="selectOption(this, 'vsoReceived')" class="option-btn py-3 px-2 border border-gray-200 rounded-sm hover:border-vw-gold hover:text-vw-gold transition text-xs font-bold uppercase text-gray-600">Besproken</button>
+                                </div>
+                            </div>
+
+                            <div>
+                                <p class="font-semibold text-sm uppercase tracking-wider mb-4 text-vw-blue text-xs">2. Wat voor type contract heeft u?</p>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                    <button onclick="selectOption(this, 'contractType')" class="option-btn py-3 px-4 border border-gray-200 rounded-sm hover:border-vw-gold hover:text-vw-gold transition text-xs font-bold uppercase text-gray-600">Bepaalde tijd</button>
+                                    <button onclick="selectOption(this, 'contractType')" class="option-btn py-3 px-4 border border-gray-200 rounded-sm hover:border-vw-gold hover:text-vw-gold transition text-xs font-bold uppercase text-gray-600">Onbepaalde tijd</button>
+                                </div>
+                            </div>
+
+                            <div>
+                                <p class="font-semibold text-sm uppercase tracking-wider mb-4 text-vw-blue text-xs">3. Heeft u de VSO al getekend?</p>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                    <button onclick="selectOption(this, 'isSigned')" class="option-btn py-3 px-4 border border-gray-200 rounded-sm hover:border-vw-gold hover:text-vw-gold transition text-xs font-bold uppercase text-gray-600">Ja, getekend</button>
+                                    <button onclick="selectOption(this, 'isSigned')" class="option-btn py-3 px-4 border border-gray-200 rounded-sm hover:border-vw-gold hover:text-vw-gold transition text-xs font-bold uppercase text-gray-600">Nee, nog niet</button>
+                                </div>
+                            </div>
+
+                            <button onclick="validateAndNext()" class="w-full btn-primary py-4 rounded-sm font-bold uppercase tracking-[0.2em] text-sm mt-4">Direct advies aanvragen</button>
+                        </div>
+
+                        <div id="scan-step-2" class="space-y-6 hidden">
+                            <p class="text-sm text-gray-600 mb-6 font-medium text-xs">U bent nog één stap verwijderd van gratis advies. Vul uw gegevens in:</p>
+                            <div>
+                                <label class="block text-[10px] font-bold uppercase tracking-widest mb-2 text-vw-blue">Voornaam + Achternaam</label>
+                                <input type="text" id="scan-name" class="w-full border-b border-gray-200 focus:border-vw-gold outline-none py-2 transition text-sm font-medium" placeholder="Uw volledige naam">
+                            </div>
+                            <div>
+                                <label class="block text-[10px] font-bold uppercase tracking-widest mb-2 text-vw-blue">E-mailadres</label>
+                                <input type="email" id="scan-email" class="w-full border-b border-gray-200 focus:border-vw-gold outline-none py-2 transition text-sm font-medium" placeholder="uw@email.nl">
+                            </div>
+                            <div>
+                                <label class="block text-[10px] font-bold uppercase tracking-widest mb-2 text-vw-blue">Telefoonnummer</label>
+                                <input type="tel" id="scan-phone" class="w-full border-b border-gray-200 focus:border-vw-gold outline-none py-2 transition text-sm font-medium" placeholder="06 - 1234 5678">
+                            </div>
+                            <button id="final-submit-btn" onclick="submitScan()" class="w-full btn-primary py-4 rounded-sm font-bold uppercase tracking-[0.2em] text-sm mt-4">Aanvragen</button>
+                            <button onclick="backToQuestions()" class="w-full text-gray-400 hover:text-vw-blue text-[10px] uppercase font-bold tracking-widest transition">Terug naar vragen</button>
+                        </div>
+
+                        <div id="scan-step-success" class="text-center py-12 hidden">
+                            <div class="w-16 h-16 border-2 border-green-500 text-green-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                                <i class="fas fa-check text-2xl"></i>
+                            </div>
+                            <h4 class="text-xl font-bold text-vw-blue mb-4 uppercase">Aanvraag Verzonden</h4>
+                            <p class="text-sm text-gray-600 leading-relaxed mb-6">Uw gegevens zijn klaargezet. Als uw e-mailprogramma niet automatisch is geopend, klik dan op de knop hieronder:</p>
+                            <a id="fallback-mail-link" href="#" class="inline-block border border-vw-gold text-vw-gold px-6 py-3 rounded-sm text-[10px] font-bold uppercase tracking-widest hover:bg-vw-gold hover:text-white transition">E-mail Handmatig Openen</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Analist Sectie ✨ -->
+    <section id="ai-analist" class="py-24 bg-gray-50 border-y border-gray-100">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-12">
+                    <span class="text-vw-gold font-bold uppercase tracking-[0.3em] text-[10px]">Innovatie</span>
+                    <h2 class="text-3xl md:text-4xl font-bold text-vw-blue mt-2 mb-4 uppercase tracking-tight">Direct AI Inzicht ✨</h2>
+                    <div class="w-20 h-1 bg-vw-gold mx-auto mb-6"></div>
+                    <p class="text-gray-600 text-sm">Plak hieronder een tekstfragment uit uw VSO voor een directe, globale AI-analyse op risicopunten.</p>
+                </div>
+
+                <div class="bg-white p-8 rounded-sm shadow-xl border border-gray-100">
+                    <label class="block text-[10px] font-bold uppercase tracking-widest mb-4 text-vw-blue uppercase">Plak tekst uit uw overeenkomst</label>
+                    <textarea id="ai-input" rows="5" class="w-full p-4 bg-gray-50 border-b-2 border-gray-100 focus:border-vw-gold outline-none transition text-sm font-medium mb-6 resize-none" placeholder="Bijv: 'De arbeidsovereenkomst eindigt met wederzijds goedvinden op...'"></textarea>
+                    
+                    <button id="ai-analyze-btn" onclick="analyzeWithAI()" class="btn-primary px-10 py-4 rounded-sm font-bold uppercase tracking-[0.2em] text-[10px] shadow-md flex items-center justify-center mx-auto space-x-2 w-full sm:w-auto">
+                        <span>Analyseer mijn VSO ✨</span>
+                    </button>
+
+                    <div class="mt-6 border-t border-gray-100 pt-6">
+                        <p class="text-[10px] text-gray-500 italic leading-relaxed text-center max-w-2xl mx-auto">
+                            <strong>Disclaimer:</strong> AI-gegenereerde antwoorden kunnen fouten bevatten. Van Wasbeek Wet en Recht is niet aansprakelijk voor schade die hieruit voortvloeit. Deze tool is enkel bedoeld om de klant een eerste impressie te geven van een VSO of bepaald stuk uit een VSO.
+                        </p>
+                    </div>
+
+                    <div id="ai-result-container" class="mt-8 hidden">
+                        <div class="p-6 bg-vw-blue/5 border-l-4 border-vw-gold rounded-sm">
+                            <h4 class="font-bold text-vw-blue mb-4 uppercase tracking-wider text-xs flex items-center">
+                                <i class="fas fa-robot mr-2 text-vw-gold"></i> AI Voorlopige Analyse
+                            </h4>
+                            <div id="ai-loading" class="space-y-3 hidden">
+                                <div class="h-4 ai-shimmer rounded w-full"></div>
+                                <div class="h-4 ai-shimmer rounded w-5/6"></div>
+                                <div class="h-4 ai-shimmer rounded w-4/6"></div>
+                            </div>
+                            <div id="ai-result-text" class="text-sm text-gray-700 leading-relaxed space-y-2"></div>
+                        </div>
+                        <div class="text-center mt-8">
+                            <a href="#contact" class="text-vw-blue font-bold uppercase tracking-widest border-b border-vw-gold pb-1 hover:text-vw-gold transition text-[10px]">Krijg direct volledig expertadvies &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Harde Resultaten + Calculator -->
+    <section id="calculator" class="py-24 bg-vw-blue text-white overflow-hidden">
+        <div class="container mx-auto px-4">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-10 uppercase tracking-wider italic">Het maximale resultaat</h2>
+                    <div class="space-y-8">
+                        <div class="flex items-center space-x-6 p-6 border border-vw-gold/30 bg-white/5 group hover:bg-white/10 transition-all">
+                            <div class="w-16 h-16 flex-shrink-0 flex items-center justify-center bg-vw-gold text-vw-blue rounded-full font-bold text-xl group-hover:scale-110 transition-transform">+23%</div>
+                            <div>
+                                <h4 class="font-bold uppercase tracking-widest text-xs text-vw-gold mb-1">Ontslagvergoeding</h4>
+                                <p class="text-sm text-gray-300">Gemiddeld 23% hogere ontslagvergoeding voor onze cliënten dan het eerste voorstel.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-6 p-6 border border-vw-gold/30 bg-white/5 group hover:bg-white/10 transition-all">
+                            <div class="w-16 h-16 flex-shrink-0 flex items-center justify-center bg-vw-gold text-vw-blue rounded-full text-2xl group-hover:scale-110 transition-transform"><i class="fas fa-calendar-plus"></i></div>
+                            <div>
+                                <h4 class="font-bold uppercase tracking-widest text-xs text-vw-gold mb-1">Uitdiensttreding</h4>
+                                <p class="text-sm text-gray-300">Een latere uitdienstdatum voor optimale loondoorbetaling en WW-veiligheid.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-6 p-6 border border-vw-gold/30 bg-white/5 group hover:bg-white/10 transition-all">
+                            <div class="w-16 h-16 flex-shrink-0 flex items-center justify-center bg-vw-gold text-vw-blue rounded-full text-2xl group-hover:scale-110 transition-transform"><i class="fas fa-car-side"></i></div>
+                            <div>
+                                <h4 class="font-bold uppercase tracking-widest text-xs text-vw-gold mb-1">Secundaire arbeidsvoorwaarden</h4>
+                                <p class="text-sm text-gray-300">Langer gebruik van leaseauto, laptop of behoud van opgebouwde bonussen.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Calculator Tool -->
+                <div class="relative">
+                    <div class="bg-white p-8 md:p-10 rounded-sm shadow-2xl text-vw-blue border-t-4 border-vw-gold">
+                        <h3 class="text-2xl font-bold mb-6 text-vw-blue uppercase tracking-tight">Mijn Voordeel Berekenen</h3>
+                        <p class="text-gray-500 text-xs mb-8 uppercase tracking-widest">Wat is uw potentieel resultaat via Van Wasbeek?</p>
+                        
+                        <div class="space-y-6">
+                            <div>
+                                <label class="block text-[10px] font-bold uppercase tracking-widest mb-2">Bruto maandsalaris (€)</label>
+                                <input type="number" id="calc-salary" class="w-full border-b border-gray-200 focus:border-vw-gold outline-none py-2 transition text-sm font-medium" placeholder="Bijv. 3500">
+                            </div>
+                            <div>
+                                <label class="block text-[10px] font-bold uppercase tracking-widest mb-2">Aantal dienstjaren</label>
+                                <input type="number" id="calc-years" class="w-full border-b border-gray-200 focus:border-vw-gold outline-none py-2 transition text-sm font-medium" placeholder="Bijv. 8">
+                            </div>
+                            
+                            <button onclick="calculateBenefit()" class="w-full btn-primary py-4 rounded-sm font-bold uppercase tracking-[0.2em] text-[10px] mt-2">Bereken mijn resultaat</button>
+                            
+                            <!-- Calculator Result -->
+                            <div id="calc-result" class="hidden mt-8 pt-8 border-t border-gray-100">
+                                <div class="bg-gray-50 p-6 rounded-sm space-y-4 border-l-4 border-vw-gold">
+                                    <div>
+                                        <p class="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-1">Geschatte vergoeding via Van Wasbeek*</p>
+                                        <p class="text-3xl font-bold text-vw-blue" id="res-compensation">€ 0</p>
+                                    </div>
+                                    <div class="pt-4 border-t border-gray-200">
+                                        <p class="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-1">Potentiële datum verlenging</p>
+                                        <p class="text-lg font-bold text-vw-blue">+ 2 MAANDEN</p>
+                                        <p class="text-[9px] text-gray-500 italic mt-1">Langer loonbehoud & gebruik van secundaire voorwaarden.</p>
+                                    </div>
+                                </div>
+                                <!-- Aangepaste link naar het header formulier -->
+                                <button onclick="document.getElementById('quick-scan-card').scrollIntoView({behavior: 'smooth'})" class="w-full border border-vw-blue text-vw-blue py-3 rounded-sm font-bold uppercase tracking-[0.2em] text-[10px] mt-6 hover:bg-vw-blue hover:text-white transition text-center block">Gratis Verificatie Aanvragen</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kernwaarden -->
+    <section id="voordelen" class="py-24 bg-white">
+        <div class="container mx-auto px-4 text-center">
+            <div class="max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-vw-blue mb-4 uppercase tracking-tight">Waarom Van Wasbeek Wet & Recht?</h2>
+                <div class="w-20 h-1 bg-vw-gold mx-auto mb-6"></div>
+                <p class="text-gray-600 text-sm italic">Juridische scherpte met een resultaatgerichte focus.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-10">
+                <div class="bg-gray-50 p-10 rounded-sm border-t-2 border-vw-gold text-left">
+                    <i class="fas fa-gavel text-vw-gold text-3xl mb-6"></i>
+                    <h3 class="text-xl font-bold mb-4 text-vw-blue uppercase tracking-wide">Juridische Zekerheid</h3>
+                    <p class="text-gray-600 text-sm">Wij beoordelen of uw rechten volledig beschermd zijn volgens de laatste wetgeving.</p>
+                </div>
+                <div class="bg-gray-50 p-10 rounded-sm border-t-2 border-vw-gold text-left text-vw-blue">
+                    <i class="fas fa-hand-holding-usd text-vw-gold text-3xl mb-6"></i>
+                    <h3 class="text-xl font-bold mb-4 text-vw-blue uppercase tracking-wide">Kosteloos</h3>
+                    <p class="text-gray-600 text-sm">Onze kosten worden doorgaans vergoed door de werkgever. Mocht dit niet lukken, dan blijft het voor u gratis.</p>
+                </div>
+                <div class="bg-gray-50 p-10 rounded-sm border-t-2 border-vw-gold text-left">
+                    <i class="fas fa-user-shield text-vw-gold text-3xl mb-6"></i>
+                    <h3 class="text-xl font-bold mb-4 text-vw-blue uppercase tracking-wide">WW-Garantie</h3>
+                    <p class="text-gray-600 text-sm">Wij maken de overeenkomst UWV-proof, zodat u zeker bent van uw uitkering.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="py-24 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="max-w-5xl mx-auto flex flex-col md:flex-row shadow-2xl rounded-sm overflow-hidden bg-white">
+                <div class="md:w-2/5 bg-vw-blue p-12 text-white flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-2xl font-serif mb-6 uppercase tracking-wider">Contact</h3>
+                        <p class="text-gray-300 text-sm leading-relaxed mb-8">Wij staan u graag telefonisch te woord voor een directe analyse van uw situatie.</p>
+                    </div>
+                    <div class="space-y-6">
+                        <p class="text-sm font-medium"><i class="fas fa-phone-alt text-vw-gold mr-3"></i> 06 - 1234 5678</p>
+                        <p class="text-sm font-medium"><i class="fas fa-envelope text-vw-gold mr-3"></i> info@vanwasbeeklegal.nl</p>
+                    </div>
+                </div>
+                <div class="md:w-3/5 p-12">
+                    <div>
+                         <p class="text-gray-600 text-sm mb-8">Heeft u een algemene vraag? Laat hieronder uw bericht achter.</p>
+                         <form onsubmit="event.preventDefault(); this.innerHTML='<div class=\'text-center py-8\'><i class=\'fas fa-check-circle text-green-500 text-4xl mb-4\'></i><p class=\'font-bold\'>Bericht verstuurd!</p></div>';">
+                            <input type="text" placeholder="Naam" class="w-full border-b border-gray-200 outline-none py-3 mb-6 text-sm" required>
+                            <input type="email" placeholder="E-mail" class="w-full border-b border-gray-200 outline-none py-3 mb-10 text-sm" required>
+                            <button class="btn-primary w-full py-4 uppercase tracking-[0.3em] text-[10px] font-bold">Verstuur bericht</button>
+                         </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-vw-blue text-white py-12 border-t border-white/5">
+        <div class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="flex items-center space-x-3">
+                <div class="w-8 h-8 border border-vw-gold flex items-center justify-center text-vw-gold font-serif text-sm">W</div>
+                <div class="text-left"><span class="font-bold tracking-widest uppercase block text-sm">Van Wasbeek</span></div>
+            </div>
+            <p class="text-[9px] text-gray-500 uppercase tracking-widest">&copy; 2026 Van Wasbeek Wet & Recht</p>
+        </div>
+    </footer>
+
+    <script>
+        const apiKey = "";
+        let scanResults = { vsoReceived: '', contractType: '', isSigned: '' };
+
+        function selectOption(btn, category) {
+            const parent = btn.parentElement;
+            parent.querySelectorAll('.option-btn').forEach(b => {
+                b.classList.remove('selected', 'bg-vw-gold', 'text-white', 'border-vw-gold');
+                b.classList.add('border-gray-200', 'text-gray-600');
+            });
+            btn.classList.add('selected');
+            scanResults[category] = btn.innerText;
+        }
+
+        function validateAndNext() {
+            if (!scanResults.vsoReceived || !scanResults.contractType || !scanResults.isSigned) {
+                alert("Beantwoord eerst alle drie de vragen voordat u verder gaat.");
+                return;
+            }
+            showLeadForm();
+        }
+
+        function showLeadForm() {
+            document.getElementById('scan-step-1').classList.add('hidden');
+            document.getElementById('scan-step-2').classList.remove('hidden');
+            document.getElementById('scan-title').innerText = "Gegevens invullen";
+        }
+
+        function backToQuestions() {
+            document.getElementById('scan-step-2').classList.add('hidden');
+            document.getElementById('scan-step-1').classList.remove('hidden');
+            document.getElementById('scan-title').innerText = "VSO Quick-Scan";
+        }
+
+        function submitScan() {
+            const nameInput = document.getElementById('scan-name');
+            const emailInput = document.getElementById('scan-email');
+            const phoneInput = document.getElementById('scan-phone');
+            const submitBtn = document.getElementById('final-submit-btn');
+
+            if(!nameInput.value || !emailInput.value || !phoneInput.value) {
+                alert("Vul alstublieft alle velden in.");
+                return;
+            }
+
+            submitBtn.innerText = "Bezig met verzenden...";
+            submitBtn.disabled = true;
+
+            const now = new Date();
+            const timestamp = now.toLocaleString('nl-NL');
+            const subject = `NIEUWE LEAD ${nameInput.value} [${scanResults.vsoReceived}] [${scanResults.contractType}]`;
+            
+            const body = `Nieuwe aanvraag via VSO Quick-Scan\nINDIENINGSDATUM: ${timestamp}\nKLANTGEGEVENS:\nNaam: ${nameInput.value}\nE-mail: ${emailInput.value}\nTelefoon: ${phoneInput.value}\nSCAN RESULTATEN:\nVSO Ontvangen?: ${scanResults.vsoReceived}\nContracttype: ${scanResults.contractType}\nAl getekend?: ${scanResults.isSigned}`;
+
+            const mailtoUrl = `mailto:info@vanwasbeeklegal.nl?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            document.getElementById('fallback-mail-link').href = mailtoUrl;
+
+            const tempLink = document.createElement('a');
+            tempLink.href = mailtoUrl;
+            tempLink.style.display = 'none';
+            document.body.appendChild(tempLink);
+            
+            setTimeout(() => {
+                tempLink.click();
+                document.body.removeChild(tempLink);
+                document.getElementById('scan-step-2').classList.add('hidden');
+                document.getElementById('scan-step-success').classList.remove('hidden');
+                document.getElementById('scan-title').innerText = "Klaar voor verzending";
+            }, 500);
+        }
+
+        function calculateBenefit() {
+            const salary = parseFloat(document.getElementById('calc-salary').value);
+            const years = parseFloat(document.getElementById('calc-years').value);
+
+            if (isNaN(salary) || isNaN(years) || salary <= 0 || years < 0) {
+                alert("Vul a.u.b. geldige waarden in voor salaris en dienstjaren.");
+                return;
+            }
+
+            // Transitievergoeding: 1/3 maandsalaris per jaar
+            const baseTV = (salary * years) / 3;
+            // +23% extra bonus
+            const totalTV = baseTV * 1.23;
+
+            const formattedTV = new Intl.NumberFormat('nl-NL', { style: 'currency', currency: 'EUR' }).format(totalTV);
+            
+            document.getElementById('res-compensation').innerText = formattedTV;
+            document.getElementById('calc-result').classList.remove('hidden');
+            
+            document.getElementById('calc-result').scrollIntoView({behavior: 'smooth', block: 'nearest'});
+        }
+
+        async function analyzeWithAI() {
+            const input = document.getElementById('ai-input').value;
+            if (!input || input.length < 20) {
+                alert("Voer alstublieft een representatief stuk tekst uit uw VSO in.");
+                return;
+            }
+
+            const btn = document.getElementById('ai-analyze-btn');
+            const container = document.getElementById('ai-result-container');
+            const loading = document.getElementById('ai-loading');
+            const resultText = document.getElementById('ai-result-text');
+
+            btn.disabled = true;
+            btn.innerHTML = '<span>Bezig met analyseren ✨</span>';
+            container.classList.remove('hidden');
+            loading.classList.remove('hidden');
+            resultText.classList.add('hidden');
+
+            const systemPrompt = "Je bent een expert in Nederlands arbeidsrecht bij Van Wasbeek Wet & Recht. Analyseer de tekst uit een vaststellingsovereenkomst. Geef 3 korte, kritische aandachtspunten in bulletpoints en sluit af met een motiverende zin om contact op te nemen voor een volledige check. Gebruik een professionele, geruststellende toon.";
+
+            try {
+                const data = await fetchWithRetry(input, systemPrompt);
+                const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
+                if (text) {
+                    resultText.innerHTML = text.replace(/\n/g, '<br>').replace(/\*/g, '•');
+                } else {
+                    throw new Error("Geen resultaat");
+                }
+            } catch (error) {
+                resultText.innerHTML = "<p class='text-red-600'>Er is een fout opgetreden bij de AI-analyse. Probeer het later opnieuw.</p>";
+            } finally {
+                loading.classList.add('hidden');
+                resultText.classList.remove('hidden');
+                btn.disabled = false;
+                btn.innerHTML = '<span>Analyseer mijn VSO ✨</span>';
+            }
+        }
+
+        async function fetchWithRetry(userQuery, systemPrompt) {
+            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+            const payload = {
+                contents: [{ parts: [{ text: userQuery }] }],
+                systemInstruction: { parts: [{ text: systemPrompt }] }
+            };
+            let delay = 1000;
+            for (let i = 0; i < 5; i++) {
+                try {
+                    const response = await fetch(url, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    if (!response.ok) throw new Error("API Fout");
+                    return await response.json();
+                } catch (e) {
+                    if (i === 4) throw e;
+                    await new Promise(r => setTimeout(r, delay));
+                    delay *= 2;
+                }
+            }
+        }
+    </script>
+</body>
+</html>
